@@ -1,0 +1,22 @@
+\documentclass{article}
+\usepackage[cleanup,subfolder]{gnuplottex}
+\usepackage{xcolor}
+\definecolor{tbcol}{rgb}{1,1,1}
+\usepackage[nogin]{Sweave}
+
+\begin{document}
+\input{informe-concordance}
+
+Hola
+
+\begin{gnuplot}[terminal = cairolatex]
+set multiplot layout 2,2
+plot x
+plot x**2
+plot x**3
+plot x**4
+unset multiplot
+
+\end{gnuplot}
+
+\end{document}
