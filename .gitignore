@@ -1,0 +1,11 @@
+# Archivos de LaTex 
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.gnuplot.errors
+*.synctex.gz
+*.concordance.tex
+# Ignorando carpetas 
+gnuplottex/
