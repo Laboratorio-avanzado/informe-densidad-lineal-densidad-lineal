@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+Analisis de Datos por Estadistica\\
+\textbf{Configuracion 1}\\
+La configuracion 1 es: $L=172.8\ \text{cm}$, $\delta L = 0.1\ \text{cm}$, $m=105.50\ \text{g}$, $\delta m = 0.05\ \text{g}$ 
+<<echo=FALSE, results=tex>>=
+n <- seq(1,9,1)
+nu <- c(12.1, 23.9, 36.5, 49.3, 61.9, 74.7, 85.6, 98.2, 111.2)
+L <- 1.728
+m <- 0.10550
+tabla1 <- data.frame(n, nu)
+g <- 9.78069
+tabla1[,"mu"] <- tabla1$n^2*m*g/(4*L^2*tabla1$nu^2)
+tabla1[5,"muprom"] <- mean(tabla1$mu)
+tabla1[5,"sigmamu"] <- sd(tabla1$mu)/sqrt(length(n))
+library(xtable)
+Tabla1 <- xtable(tabla1, digits = c(0, 0, 1, 8, 8, 8))
+print (Tabla1, include.rownames = FALSE)
+@
+
+
+\end{document}
