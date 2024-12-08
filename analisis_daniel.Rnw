@@ -103,7 +103,7 @@ El valor reportado para la configuración 2 es:
 $$\mu = \left(555\pm 7 \right)\times 10^{-6} \text{kg}/\text{m}$$
 
 \textbf{Visualización de Datos}\\
-A continuación se muestra en un gráfico de discrepancia la visaulización de los diferentes valores de $\mu$ comparado con el valor promedio obtenido:
+A continuación se muestra en un gráfico de discrepancia la visualización de los diferentes valores de $\mu$ comparado con el valor promedio obtenido:
 
 \begin{figure}[!h]
 
@@ -118,7 +118,7 @@ set ylabel "Densidad lineal de masa $\\mu$"
 set xtics 1
 mu = 0.00055500
 set yrange [5.0e-4:6.2e-4]
-plot[0:10] "mu2.dat" every :: 1 w errorbars t "Valores obtenidos de $\\mu$", \ 
+plot[0:11] "mu2.dat" every :: 1 w errorbars t "Valores obtenidos de $\\mu$", \ 
 mu t "Valor Promedio"
 
 \end{gnuplot}
