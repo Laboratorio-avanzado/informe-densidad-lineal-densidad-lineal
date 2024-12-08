@@ -8,8 +8,6 @@
 \usepackage{amsmath}
 \usepackage[left=2cm, right=2cm, top=2.5cm, bottom=3cm]{geometry}
 
-
-
 \setlength{\parindent}{0pt}
 \decimalpoint
 \usepackage{Sweave}
@@ -21,7 +19,7 @@
 La configuración 1 es: $L=172.8$ cm, $\delta L = 0.1$ cm, $m=105.50$ g, $\delta m = 0.05$ g
 
 % latex table generated in R 4.4.2 by xtable 1.8-4 package
-% Sat Dec  7 21:31:18 2024
+% Sun Dec  8 11:35:02 2024
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrrrr}
@@ -70,8 +68,62 @@ mu t "Valor Promedio"
 
 \end{figure}
 
+\newpage
 
+\textbf{Configuración 2}\\
+La configuración 2 es: $L=148.7$ cm, $\delta L = 0.1$ cm, $m=126.1$ g, $\delta m = 0.05$ g
 
+% latex table generated in R 4.4.2 by xtable 1.8-4 package
+% Sun Dec  8 11:35:02 2024
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrrr}
+  \toprule
+$n$ & $\nu$ (Hz) & $\delta\nu$ (Hz) & $\mu$ (kg/m$^3$) & $\delta\mu$ (kg/m$^3$) & $\bar{\mu}$ (kg/m$^3$) & $\sigma_{\bar{\mu}}$ (kg/m$^3$) \\ 
+  \midrule
+1 & 15.8 & 0.08 & 0.00055858 & 0.000003 &  &  \\ 
+  2 & 33.4 & 0.20 & 0.00050000 & 0.000003 &  &  \\ 
+  3 & 47.4 & 0.20 & 0.00055858 & 0.000002 &  &  \\ 
+  4 & 63.1 & 0.30 & 0.00056036 & 0.000003 &  &  \\ 
+  5 & 78.8 & 0.40 & 0.00056142 & 0.000003 & 0.00055500 & 0.000007 \\ 
+  6 & 93.7 & 0.50 & 0.00057178 & 0.000003 &  &  \\ 
+  7 & 109.4 & 0.50 & 0.00057091 & 0.000003 &  &  \\ 
+  8 & 125.0 & 0.60 & 0.00057117 & 0.000003 &  &  \\ 
+  9 & 143.7 & 0.70 & 0.00054698 & 0.000003 &  &  \\ 
+  10 & 159.2 & 0.80 & 0.00055019 & 0.000003 &  &  \\ 
+   \bottomrule
+\end{tabular}
+\caption{Configuración 2} 
+\end{table}
 
+El valor reportado para la configuración 2 es:
+
+$$\mu = \left(555\pm 7 \right)\times 10^{-6} \text{kg}/\text{m}$$
+
+\textbf{Visualización de Datos}\\
+A continuación se muestra en un gráfico de discrepancia la visaulización de los diferentes valores de $\mu$ comparado con el valor promedio obtenido:
+
+\begin{figure}[!h]
+
+\centering
+\begin{gnuplot}[terminal=cairolatex]
+
+set key top right
+set grid
+set title "Valores obtenidos de $\\mu$ vs numero de medida"
+set xlabel "Número de medición"
+set ylabel "Densidad lineal de masa $\\mu$"
+set xtics 1
+mu = 0.00055500
+set yrange [5.0e-4:6.2e-4]
+plot[0:10] "mu2.dat" every :: 1 w errorbars t "Valores obtenidos de $\\mu$", \ 
+mu t "Valor Promedio"
+
+\end{gnuplot}
+\caption{gráfico de discrepancia 2}
+
+\end{figure}
 
 \end{document}
+
+

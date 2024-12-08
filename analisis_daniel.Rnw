@@ -8,8 +8,6 @@
 \usepackage{amsmath}
 \usepackage[left=2cm, right=2cm, top=2.5cm, bottom=3cm]{geometry}
 
-
-
 \setlength{\parindent}{0pt}
 \decimalpoint
 \begin{document}
@@ -71,8 +69,63 @@ mu t "Valor Promedio"
 
 \end{figure}
 
+\newpage
+
+\textbf{Configuración 2}\\
+La configuración 2 es: $L=148.7$ cm, $\delta L = 0.1$ cm, $m=126.1$ g, $\delta m = 0.05$ g
+
+<<echo=FALSE,results=tex>>=
+n <- seq(1,10,1)
+nu <- c(15.8,33.4,47.4,63.1,78.8,93.7,109.4,125.0,143.7, 159.2)
+L <- 1.487
+m <- 0.1261
+g <- 9.78069
+dL <- 1e-3
+dm <- 0.05e-3
+dnu <- signif((0.5/100)*(nu),1)
+tabla1 <- data.frame(n,nu,dnu)
+tabla1[,"mu"] <- tabla1$n^2*m*g/(4*L^2*tabla1$nu^2)
+tabla1[,"dmu"] <- signif(tabla1$mu*sqrt((dm/m)^2+(dL/L)^2+(tabla1$dnu/tabla1$nu)^2),1)
+tabla1[5,"mu_prom"] <- mean(tabla1$mu)
+tabla1[5,"sigma_mu"] <- signif(sd(tabla1$mu)/sqrt(length(nu)),1)
+write.table(data.frame(tabla1$n,tabla1$mu,tabla1$dmu), file="mu2.dat",row.names=FALSE)
+colnames(tabla1) <- c("$n$","$\\nu$ (Hz)","$\\delta\\nu$ (Hz)","$\\mu$ (kg/m$^3$)","$\\delta\\mu$ (kg/m$^3$)",
+                      "$\\bar{\\mu}$ (kg/m$^3$)","$\\sigma_{\\bar{\\mu}}$ (kg/m$^3$)")
+
+library(xtable)
+Tabla1 <- xtable(tabla1,digits = c(0,0,1,2,8,6,8,6),caption="Configuración 2")
+print(Tabla1,include.rownames = F, sanitize.text.function = function(x){x}, booktabs = TRUE)
+@
 
 
+El valor reportado para la configuración 2 es:
 
+$$\mu = \left(555\pm 7 \right)\times 10^{-6} \text{kg}/\text{m}$$
+
+\textbf{Visualización de Datos}\\
+A continuación se muestra en un gráfico de discrepancia la visaulización de los diferentes valores de $\mu$ comparado con el valor promedio obtenido:
+
+\begin{figure}[!h]
+
+\centering
+\begin{gnuplot}[terminal=cairolatex]
+
+set key top right
+set grid
+set title "Valores obtenidos de $\\mu$ vs numero de medida"
+set xlabel "Número de medición"
+set ylabel "Densidad lineal de masa $\\mu$"
+set xtics 1
+mu = 0.00055500
+set yrange [5.0e-4:6.2e-4]
+plot[0:10] "mu2.dat" every :: 1 w errorbars t "Valores obtenidos de $\\mu$", \ 
+mu t "Valor Promedio"
+
+\end{gnuplot}
+\caption{gráfico de discrepancia 2}
+
+\end{figure}
 
 \end{document}
+
+
