@@ -1,0 +1,14 @@
+\documentclass{article}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+<<echo=FALSE, results=tex>>=
+
+
+
+@
+
+
+
+\end{document}
